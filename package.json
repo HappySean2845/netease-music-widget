@@ -1,0 +1,17 @@
+{
+  "name": "netease-music-readme",
+  "version": "1.0.0",
+  "description": "Show your NetEase Cloud Music listening history on your GitHub profile README",
+  "private": true,
+  "scripts": {
+    "build": "tsc --noEmit",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@vercel/node": "^3.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vercel": "^37.0.0"
+  }
+}
