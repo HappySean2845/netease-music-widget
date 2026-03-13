@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { getUserRecord, getUserProfile, imageToBase64 } from "../src/netease";
-import { renderCard } from "../src/svg";
+import { renderCard, THEME_NAMES } from "../src/svg";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const { id, type = "week", count = "5", show_rank = "true", theme = "dark" } = req.query;
@@ -36,7 +36,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       nickname: profile?.nickname || "",
       type: type === "all" ? "all" : "week",
       showRank: show_rank !== "false",
-      theme: theme === "light" ? "light" : "dark",
+      theme: THEME_NAMES.includes(theme as string) ? (theme as string) : "dark",
     });
 
     res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
