@@ -7,7 +7,7 @@ Show your NetEase Cloud Music (网易云音乐) listening history on your GitHub
 Add this to your GitHub profile README:
 
 ```markdown
-![Netease Music](https://netease-music-readme.vercel.app/api?id=YOUR_NETEASE_USER_ID)
+![Netease Music](https://netease-github-widget.vercel.app/api?id=YOUR_NETEASE_USER_ID)
 ```
 
 ## Parameters
@@ -24,12 +24,12 @@ Add this to your GitHub profile README:
 
 **Dark theme (default):**
 ```markdown
-![Netease Music](https://netease-music-readme.vercel.app/api?id=YOUR_ID&type=week&count=5)
+![Netease Music](https://netease-github-widget.vercel.app/api?id=YOUR_ID&type=week&count=5)
 ```
 
 **Light theme, all-time top 3:**
 ```markdown
-![Netease Music](https://netease-music-readme.vercel.app/api?id=YOUR_ID&type=all&count=3&theme=light)
+![Netease Music](https://netease-github-widget.vercel.app/api?id=YOUR_ID&type=all&count=3&theme=light)
 ```
 
 ## How to find your NetEase user ID
@@ -40,7 +40,7 @@ Add this to your GitHub profile README:
 
 ## Deploy your own
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/HappySean2845/netease-music-readme)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/HappySean2845/netease-github-widget)
 
 ## Note
 
