@@ -2,47 +2,47 @@
 
 # 🎵 Netease Music Widget
 
-在你的 GitHub 个人主页展示 [网易云音乐](https://music.163.com/) 听歌记录
+Show your [NetEase Cloud Music](https://music.163.com/) listening history on your GitHub profile README
 
-[English](./README_EN.md) | 简体中文
+English | [简体中文](./README.md)
 
 <img src="https://netease-music-widget.vercel.app/api?id=1455444028&type=week&count=5&theme=dark" alt="demo" />
 
 </div>
 
-## 快速开始
+## Quick Start
 
-在你的 GitHub 个人主页 `README.md` 中添加：
-
-```markdown
-![Netease Music](https://netease-music-widget.vercel.app/api?id=你的网易云用户ID)
-```
-
-## 参数说明
-
-| 参数 | 说明 | 默认值 | 可选值 |
-|------|------|--------|--------|
-| `id` | **必填** 网易云音乐用户 ID | — | — |
-| `type` | 时间范围 | `week` | `week`（最近一周）、`all`（所有时间） |
-| `count` | 显示歌曲数量 | `5` | `1` – `10` |
-| `theme` | 卡片主题 | `dark` | 见下方主题列表 |
-| `show_rank` | 显示排名序号 | `true` | `true`、`false` |
-
-## 使用示例
+Add this to your GitHub profile `README.md`:
 
 ```markdown
-<!-- 默认：dark 主题，最近一周 Top 5 -->
-![Netease Music](https://netease-music-widget.vercel.app/api?id=你的ID)
-
-<!-- Dracula 主题，所有时间 Top 3，不显示排名 -->
-![Netease Music](https://netease-music-widget.vercel.app/api?id=你的ID&type=all&count=3&theme=dracula&show_rank=false)
+![Netease Music](https://netease-music-widget.vercel.app/api?id=YOUR_NETEASE_USER_ID)
 ```
 
-## 主题
+## Parameters
 
-共 10 款主题：5 款暗色 + 5 款亮色。
+| Parameter | Description | Default | Options |
+|-----------|-------------|---------|---------|
+| `id` | **Required.** Your NetEase Cloud Music user ID | — | — |
+| `type` | Time range | `week` | `week`, `all` |
+| `count` | Number of songs to display | `5` | `1` – `10` |
+| `theme` | Card theme | `dark` | See themes below |
+| `show_rank` | Show rank numbers | `true` | `true`, `false` |
 
-### 暗色主题
+## Examples
+
+```markdown
+<!-- Default: dark theme, weekly top 5 -->
+![Netease Music](https://netease-music-widget.vercel.app/api?id=YOUR_ID)
+
+<!-- Dracula theme, all-time top 3, no rank -->
+![Netease Music](https://netease-music-widget.vercel.app/api?id=YOUR_ID&type=all&count=3&theme=dracula&show_rank=false)
+```
+
+## Themes
+
+10 built-in themes: 5 dark + 5 light.
+
+### Dark Themes
 
 | `dark` | `nord` | `dracula` |
 |:------:|:------:|:---------:|
@@ -52,7 +52,7 @@
 |:---------:|:-------:|
 | <img src="https://netease-music-widget.vercel.app/api?id=1455444028&count=3&theme=monokai" width="300" /> | <img src="https://netease-music-widget.vercel.app/api?id=1455444028&count=3&theme=ocean" width="300" /> |
 
-### 亮色主题
+### Light Themes
 
 | `light` | `sakura` | `mint` |
 |:-------:|:--------:|:------:|
@@ -62,17 +62,17 @@
 |:--------:|:-----:|
 | <img src="https://netease-music-widget.vercel.app/api?id=1455444028&count=3&theme=sunset" width="300" /> | <img src="https://netease-music-widget.vercel.app/api?id=1455444028&count=3&theme=sky" width="300" /> |
 
-## 如何找到你的用户 ID
+## How to Find Your User ID
 
-1. 打开 [网易云音乐](https://music.163.com/) 网页版或 App
-2. 进入你的个人主页
-3. URL 中的数字就是你的用户 ID：`music.163.com/#/user/home?id=你的ID`
+1. Open [NetEase Cloud Music](https://music.163.com/) web or app
+2. Go to your profile page
+3. The number in the URL is your user ID: `music.163.com/#/user/home?id=YOUR_ID`
 
-## 自行部署
+## Deploy Your Own
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/HappySean2845/netease-music-widget)
 
-> **注意：** 你的网易云音乐听歌排行需要设置为 **公开** 才能正常使用。
+> **Note:** Your NetEase Cloud Music play history must be set to **public** for this to work.
 
 ## License
 
