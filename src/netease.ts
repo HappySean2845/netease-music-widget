@@ -67,7 +67,8 @@ export async function imageToBase64(url: string): Promise<string> {
     const buffer = await res.arrayBuffer();
     const base64 = Buffer.from(buffer).toString("base64");
     return `data:image/jpeg;base64,${base64}`;
-  } catch {
+  } catch (err) {
+    console.warn("Failed to fetch cover image:", url, err);
     return "";
   }
 }

@@ -5,8 +5,8 @@ import { renderCard, THEME_NAMES } from "../src/svg";
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const { id, type = "week", count = "5", show_rank = "true", theme = "dark" } = req.query;
 
-  if (!id || typeof id !== "string") {
-    res.status(400).send("Missing required parameter: id (NetEase Cloud Music user ID)");
+  if (!id || typeof id !== "string" || !/^\d+$/.test(id)) {
+    res.status(400).send("Missing or invalid parameter: id (must be a numeric NetEase Cloud Music user ID)");
     return;
   }
 
@@ -43,7 +43,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=600");
     res.status(200).send(svg);
   } catch (err: any) {
-    console.error("Error:", err);
-    res.status(500).send(`Error: ${err.message}`);
+    console.error("Error fetching data for uid:", id, err);
+    res.status(500).send("Internal server error. Please try again later.");
   }
 }

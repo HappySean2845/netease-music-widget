@@ -9,6 +9,7 @@ interface ThemeColors {
   songColor: string;
   accentColor: string;
   fallbackCover: string;
+  rowAltBg: string;
 }
 
 const THEMES: Record<string, ThemeColors> = {
@@ -22,6 +23,7 @@ const THEMES: Record<string, ThemeColors> = {
     songColor: "#e6edf3",
     accentColor: "#58a6ff",
     fallbackCover: "#2d333b",
+    rowAltBg: "#161b22",
   },
   nord: {
     bg: "#2e3440",
@@ -32,26 +34,29 @@ const THEMES: Record<string, ThemeColors> = {
     songColor: "#eceff4",
     accentColor: "#88c0d0",
     fallbackCover: "#3b4252",
+    rowAltBg: "#353c4a",
   },
   dracula: {
     bg: "#282a36",
     border: "#44475a",
     titleColor: "#f8f8f2",
-    subtitleColor: "#6272a4",
+    subtitleColor: "#8999cc",
     iconColor: "#ff79c6",
     songColor: "#f8f8f2",
     accentColor: "#bd93f9",
     fallbackCover: "#44475a",
+    rowAltBg: "#2e303e",
   },
   monokai: {
     bg: "#272822",
     border: "#3e3d32",
     titleColor: "#f8f8f2",
-    subtitleColor: "#75715e",
+    subtitleColor: "#9a967e",
     iconColor: "#f92672",
     songColor: "#f8f8f2",
     accentColor: "#a6e22e",
     fallbackCover: "#3e3d32",
+    rowAltBg: "#2e2f28",
   },
   ocean: {
     bg: "#0a1929",
@@ -62,10 +67,11 @@ const THEMES: Record<string, ThemeColors> = {
     songColor: "#e3f2fd",
     accentColor: "#66b2ff",
     fallbackCover: "#132f4c",
+    rowAltBg: "#0f2035",
   },
   // ===== Light themes =====
   light: {
-    bg: "#ffffff",
+    bg: "#fafbfc",
     border: "#d0d7de",
     titleColor: "#1f2328",
     subtitleColor: "#656d76",
@@ -73,6 +79,7 @@ const THEMES: Record<string, ThemeColors> = {
     songColor: "#1f2328",
     accentColor: "#0969da",
     fallbackCover: "#eaeef2",
+    rowAltBg: "#f6f8fa",
   },
   sakura: {
     bg: "#fff5f5",
@@ -83,6 +90,7 @@ const THEMES: Record<string, ThemeColors> = {
     songColor: "#63171b",
     accentColor: "#d53f8c",
     fallbackCover: "#fed7d7",
+    rowAltBg: "#fff0f0",
   },
   mint: {
     bg: "#f0fff4",
@@ -93,6 +101,7 @@ const THEMES: Record<string, ThemeColors> = {
     songColor: "#1a4731",
     accentColor: "#319795",
     fallbackCover: "#c6f6d5",
+    rowAltBg: "#e8fcee",
   },
   sunset: {
     bg: "#fffaf0",
@@ -103,16 +112,18 @@ const THEMES: Record<string, ThemeColors> = {
     songColor: "#652b19",
     accentColor: "#d69e2e",
     fallbackCover: "#feebc8",
+    rowAltBg: "#fff5e6",
   },
   sky: {
     bg: "#f0f9ff",
     border: "#bfdbfe",
     titleColor: "#1e3a5f",
-    subtitleColor: "#3b82f6",
-    iconColor: "#3b82f6",
+    subtitleColor: "#2563eb",
+    iconColor: "#1d4ed8",
     songColor: "#1e3a5f",
     accentColor: "#2563eb",
     fallbackCover: "#bfdbfe",
+    rowAltBg: "#e8f4fd",
   },
 };
 
@@ -144,10 +155,13 @@ function renderSongRow(
 ): string {
   const y = index * 72;
   const animDelay = index * 0.15;
+  const isAlt = index % 2 === 1;
 
   return `
     <g transform="translate(0, ${y})" opacity="0">
       <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="${animDelay}s" fill="freeze"/>
+
+      ${isAlt ? `<rect x="-12" y="0" width="444" height="64" rx="6" fill="${colors.rowAltBg}"/>` : ""}
 
       ${
         coverBase64
@@ -164,7 +178,7 @@ function renderSongRow(
       }
 
       <g transform="translate(68, 0)">
-        ${showIndex ? `<text y="18" fill="${colors.subtitleColor}" font-size="11" font-family="'Segoe UI', Ubuntu, sans-serif">#${index + 1}</text>` : ""}
+        ${showIndex ? `<text y="18" fill="${colors.accentColor}" font-size="11" font-weight="600" font-family="'Segoe UI', Ubuntu, sans-serif">#${index + 1}</text>` : ""}
         <text y="${showIndex ? 36 : 24}" fill="${colors.songColor}" font-size="14" font-weight="600" font-family="'Segoe UI', Ubuntu, sans-serif">
           ${escapeXml(truncate(song.name, 30))}
         </text>
@@ -208,7 +222,8 @@ export function renderCard(options: RenderOptions): string {
     .join("");
 
   return `
-<svg xmlns="http://www.w3.org/2000/svg" width="460" height="${cardHeight}" viewBox="0 0 460 ${cardHeight}" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="${cardHeight}" viewBox="0 0 460 ${cardHeight}" fill="none" role="img" aria-labelledby="card-title">
+  <title id="card-title">${title} - ${periodLabel}</title>
   <rect x="0.5" y="0.5" width="459" height="${cardHeight - 1}" rx="6" fill="${colors.bg}" stroke="${colors.border}"/>
 
   <g transform="translate(20, 20)">
@@ -224,6 +239,9 @@ export function renderCard(options: RenderOptions): string {
         ${periodLabel}
       </text>
     </g>
+
+    <!-- Separator -->
+    <line x1="0" y1="28" x2="420" y2="28" stroke="${colors.accentColor}" stroke-width="1" opacity="0.25"/>
 
     <!-- Songs -->
     <g transform="translate(0, 40)">
